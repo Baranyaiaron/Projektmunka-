@@ -1,0 +1,96 @@
+Cluster:
+ena
+conf t
+int s 0/1/0
+ip add 10.1.1.1 255.255.255.252
+no sh
+int s 0/2/0
+ip add 10.1.1.5 255.255.255.252
+no sh
+int s 0/1/1
+ip add 10.1.1.9 255.255.255.252
+no sh
+exit
+router ospf 1
+network 10.1.1.0 0.0.0.3 area 0
+network 10.1.1.4 0.0.0.3 area 0
+network 10.1.1.8 0.0.0.3 area 0
+exit
+
+
+1._szint_router(1)
+ena
+conf t
+int s 0/0/0
+ip add 10.1.1.2 255.255.255.252
+no sh
+int gig 0/1
+ip add 192.1.10.1 255.255.255.0
+no sh
+int gig 0/0
+ip address 192.1.20.1 255.255.255.0
+no sh
+exit
+router ospf 1
+network 10.1.1.0 0.0.0.3 area 0
+network 192.1.10.0 0.0.0.255 area 0
+network 192.1.20.0 0.0.0.255 area 0
+exit
+ip dhcp excluded-address 192.1.10.1
+ip dhcp pool VezetosegEsElsotelephely
+network 192.1.10.0 255.255.255.0
+default-router 192.1.10.1
+exit
+ip dhcp excluded-address 192.1.20.1
+ip dhcp pool Rendszergazda
+network 192.1.20.0 255.255.255.0
+default-router 192.1.20.1
+exit
+
+4._szint_router(1)
+ena
+conf t
+int s 0/0/0
+ip add 10.1.1.6 255.255.255.252
+no sh
+int gig 0/1
+ip add 10.1.2.1 255.255.255.252
+no sh
+int gig 0/0
+ip add 192.2.10.1 255.255.255.0
+no sh
+exit
+router ospf 1
+network 10.1.1.4 0.0.0.3 area 0
+network 10.1.2.0 0.0.0.3 area 0
+network 192.2.10.0 0.0.0.255 area 0
+exit
+ip dhcp excluded-address 192.2.10.1
+ip dhcp pool Masodiktelephely
+network 192.2.10.0 255.255.255.0
+default-router 192.2.10.1
+
+3._szint_router(1)
+ena
+conf t
+int s 0/0/1
+ip add 10.1.1.10 255.255.255.252
+no sh
+int gig 0/1
+ip add 10.1.3.1 255.255.255.252
+no sh
+int gig 0/0
+ip add 192.3.10.1 255.255.255.0
+no sh
+exit
+router ospf 1
+network 10.1.1.8 0.0.0.3 area 0
+network 10.1.3.1 0.0.0.3 area 0
+network 192.3.10.0 0.0.0.255 area 0
+exit
+ip dhcp excluded-address 192.3.10.1
+ip dhcp pool Harmadiktelephely
+network 192.3.10.0 255.255.255.0
+default-router 192.3.10.1
+exit
+

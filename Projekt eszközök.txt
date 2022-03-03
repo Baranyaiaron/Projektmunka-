@@ -21,13 +21,15 @@ Telephely3:
 2db PC
 1db Nyomtató
 1db wrt300n Router
-2 Laptop
+2db Laptop
+1db 2960 switch
 
 Telephely2:
 2db PC
 1db Nyomtató
 1db wrt300n Router
-2 Laptop
+2db Laptop
+1db 2960 switch
 
 
 Egyéb:

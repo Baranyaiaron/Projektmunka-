@@ -1,29 +1,35 @@
 Vezetőség:
-3db PC
+1db PC
 1db 2960 switch
 1db wrt300n wifi router
 1db nyomtató
-1db Telefon
+
 
 Rendszergazda:
-3db PC
+2db PC
 1db 2960 switch
-1db Server
+2db Server
 
 Iroda:
-5db PC
+2db PC
 1db 2960 Switch
-1db Server
-1db Telefon
 1db Nyomtató
+2 Laptop
+1 wrt300n Router
 
-Telephely sablon:
-5db PC
-1db Server
+Telephely3:
+2db PC
 1db Nyomtató
-1db Telefon
 1db wrt300n Router
+2 Laptop
+
+Telephely2:
+2db PC
+1db Nyomtató
+1db wrt300n Router
+2 Laptop
+
 
 Egyéb:
-5db 1941 Router
+3db 1941 Router
 

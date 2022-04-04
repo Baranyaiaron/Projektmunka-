@@ -1,0 +1,63 @@
+Centrum_eszak:
+ena
+conf t
+license boot module c1900 technology-package securityk9
+do wr
+exit
+reload
+ena
+conf t
+access-list 101 permit ip 172.16.0.0 0.0.255.255 10.1.20.0 0.0.0.3
+crypto isakmp policy 101
+encryption aes
+authentication pre-share
+group 5
+exit
+crypto ipsec transform-set Centrum_eszak esp-aes esp-sha-hmac
+crypto map Centrum1_map 101 ipsec-isakmp
+set peer 10.1.1.14
+set transform-set Centrum_eszak 
+match address 101
+exit
+interface s 0/0/0
+crypto map Centrum_map
+exit
+interface tunnel 0
+ip address 192.168.0.1 255.255.255.252
+tunnel source s 0/0/0
+tunnel destination 10.1.1.14
+tunnel mode gre ip
+exit
+
+
+Uranvaros_router:
+ena
+conf t
+license boot module c1900 technology-package securityk9
+do wr
+exit
+reload
+ena
+conf t
+access-list 101 permit ip 10.1.20.0 0.0.0.3 172.16.0.0 0.0.255.255
+crypto isakmp policy 101
+encryption aes
+authentication pre-share
+group 5
+exit
+crypto ipsec transform-set Uranvaros_set esp-aes esp-sha-hmac
+crypto map Uranvaros_map 101 ipsec-isakmp
+set peer 10.1.1.2
+set transform-set Uranvaros_set
+match address 101
+exit
+interface s 0/0/0
+crypto map Uranvaros_map
+exit
+interface tunnel 0
+ip address 192.168.0.2 255.255.255.252
+tunnel source s 0/0/0
+tunnel destination 10.1.1.2
+tunnel mode gre ip
+exit
+

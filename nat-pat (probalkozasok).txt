@@ -1,0 +1,31 @@
+Centrum_eszak:
+ena
+conf t
+int gig 0/0.10
+ip nat inside
+int gig 0/0.20
+ip nat inside
+int gig 0/0.30
+ip nat inside
+int s 0/0/0
+ip nat outside
+exit
+ip nat pool forditas1 10.1.1.2 10.1.1.2 netmask 255.255.255.252
+access-list 10 permit 172.16.0.0 0.0.255.255
+ip nat inside source list 10 pool forditas1 overload
+
+centrum_del:
+ena
+conf t
+int gig 0/0.10
+ip nat inside
+int gig 0/0.20
+ip nat inside
+int gig 0/0.30
+ip nat inside
+int s 0/0/0
+ip nat outside
+exit
+ip nat pool forditas1 10.1.1.6 10.1.1.6 netmask 255.255.255.252
+access-list 10 permit 172.16.0.0 0.0.255.255
+ip nat inside source list 10 pool forditas1 overload
